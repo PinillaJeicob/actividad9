@@ -3,7 +3,7 @@ import re
 from ultralytics import YOLO
 
 modelo = YOLO("C:/contador-monedas/runs/detect/train/weights/best.pt") 
-# Asegúrate de volver a poner tu IP exacta de IP Webcam
+# Asegúrarse de volver a poner tu IP exacta de IP Webcam
 cap = cv2.VideoCapture('http://192.168.110.11:8080/video') 
 
 while cap.isOpened():
@@ -16,10 +16,9 @@ while cap.isOpened():
             clase_id = int(deteccion.cls[0])
             nombre_clase = modelo.names[clase_id]
             
-            # Esto te mostrará en la terminal negra exactamente qué lee el modelo
+          
             print(f"Etiqueta detectada: {nombre_clase}")
-            
-            # Extrae solo los dígitos de la etiqueta (ej. saca '500' de 'moneda500')
+  
             numeros = re.findall(r'\d+', nombre_clase)
             if numeros:
                 total_dinero += int(numeros[0])
